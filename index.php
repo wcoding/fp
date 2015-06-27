@@ -1,6 +1,6 @@
 <?php
 
-include __DIR__ . '/lib/template.php';
+include __DIR__ . '/lib/functions.php';
 
 $params = array_filter(
     explode('/', $_GET['q']),
