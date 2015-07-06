@@ -26,6 +26,8 @@ function imgResize($pathFile, $destination, $width, $height)
     // сформировать строку из пути и имени файла, для того, чтобы сохранить миниатюру
     $destination = $destination . basename($pathFile);
 
+    $result = $newImage = $image = null;
+
     // В $type содержится код типа файла, возвращяемого функцией getimagesize()
     switch ($type) {
         case 2:

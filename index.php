@@ -1,26 +1,27 @@
 <?php
 
 include __DIR__ . '/lib/functions.php';
+mysqlStartUp();
 
-$params = array_filter(
+$paramsFromURL = array_filter(
     explode('/', $_GET['q']),
     'strlen'
 );
 
-$controller = isset($params[0]) ? strtolower($params[0]) : 'page';
-$alias = isset($params[1]) ? strtolower($params[1]) : 'home';
+$controller = isset($paramsFromURL[0]) ? strtolower($paramsFromURL[0]) : 'home';
 
-if (
-    false === file_exists(__DIR__ . '/app/controllers/' . $controller . '.php')
-    ||
-    false === file_exists(__DIR__ . '/app/views/' . $alias . '.php')
-) {
-    header('HTTP/1.0 404 Not Found');
-    $content = template('404');
+if (false === file_exists(__DIR__ . '/app/controllers/' . $controller . '.php')) {
+    include __DIR__ . '/app/controllers/404.php';
 } else {
-    $content = include __DIR__ . '/app/controllers/' . $controller . '.php';
+    include __DIR__ . '/app/controllers/' . $controller . '.php';
 }
 
-$response = template('main', ['content' => $content]);
+$response = getHtml(
+    'template',
+    [
+        'main'  => $mainContent,
+        'title' => $data['title']
+    ]
+);
 
 echo $response;

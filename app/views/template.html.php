@@ -3,7 +3,7 @@
  * Основной шаблон
  * ===============
  * $title - заголовок
- * $content - HTML страницы
+ * $main - HTML страницы
  */
 ?>
 <!DOCTYPE html>
@@ -13,15 +13,15 @@
 </head>
 <body>
     <header>
-        <h1><?=$title?></h1>
+        <nav>
+            <a href="/">Главная</a> |
+            <a href="/gallery">Галерея</a> |
+            <a href="/news/3">Новость 3</a>
+        </nav>
     </header>
-    <nav>
-        <a href="/page/index/1">Страница 1</a> |
-        <a href="/page/index/2">Страница 2</a> |
-        <a href="/page/index/3">Страница 3</a>
-    </nav>
     <main>
-        <?=$content?>
+        <h1><?=$title?></h1>
+        <?=$main?>
     </main>
     <footer>
         <p>Все права защищены. Адрес. Телефон.</p>

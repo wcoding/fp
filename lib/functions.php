@@ -72,6 +72,18 @@ function deleteFiles($files)
 
 
 /**
+ * Процедура соединения с БД
+ */
+function mysqlStartUp()
+{
+    $config = include_once realpath(__DIR__ . '/../app/config/database.php');
+    mysql_connect($config['host'], $config['user'], $config['pass']) or die('No connect with data base');
+    mysql_query('SET NAMES utf8');
+    mysql_select_db($config['dbName']) or die('No data base');
+}
+
+
+/**
 * Функция осуществляет SQL-запрос
 *
 * @param string      - текст SQL-запроса
@@ -122,14 +134,14 @@ function addUnit($num, $sfx1, $sfx234, $sfxX)
 }
 
 
-function template($fileName, $vars = [])
+function getHtml($fileName, $vars = [], $path = 'app/views/')
 {
     foreach ($vars as $k => $v) {
         $$k = $v;
     }
 
     ob_start();
-    include realpath(__DIR__ . '/../app/views/' . $fileName . '.php');
+    include realpath(__DIR__ . '/../' . $path . $fileName . '.html.php');
 
     return ob_get_clean();
 }
