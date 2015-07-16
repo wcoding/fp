@@ -2,17 +2,23 @@
 
 return [
     'gallery' => [
+        'dirName' => 'gallery',
         'pages' => [
             'gallery',
             'about'
         ],
-        'dirName' => 'gallery'
+        'controllers' => [
+            'home' => 'all'
+        ]
     ],
     'contactForm' => [
+        'dirName' => 'contactForm',
         'pages' => [
             'contact',
             'about'
         ],
-        'dirName' => 'contactForm'
+        'controllers' => [
+            'home' => 'form'
+        ]
     ]
 ];
